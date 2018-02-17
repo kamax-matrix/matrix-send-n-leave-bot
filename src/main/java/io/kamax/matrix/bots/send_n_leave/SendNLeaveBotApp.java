@@ -25,7 +25,7 @@ public class SendNLeaveBotApp {
     public static void main(String[] args) {
         SendNLeaveBot bot = new SendNLeaveBot();
 
-        bot.setMxisd(System.getenv("SNL_USER_MXISD"));
+        bot.setMxisd(System.getenv("SNL_USER_MXID"));
         bot.setPassword(System.getenv("SNL_USER_PASSWORD"));
         bot.setBaseUrl(System.getenv("SNL_HS_URL"));
         bot.setMessage(System.getenv("SNL_MESSAGE"));
