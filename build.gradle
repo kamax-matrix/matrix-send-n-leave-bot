@@ -20,6 +20,12 @@
 
 group = 'io.kamax'
 
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'com.github.johnrengelman.shadow'
+
+mainClassName = 'io.kamax.matrix.bots.send_n_leave.SendNLeaveBotApp'
+
 buildscript {
     repositories {
         jcenter()
@@ -30,13 +36,8 @@ buildscript {
     }
 }
 
-apply plugin: 'java'
-apply plugin: 'application'
-apply plugin: 'com.github.johnrengelman.shadow'
-
 repositories {
     maven {  url 'https://kamax.io/maven/releases/' }
-    maven {  url 'https://kamax.io/maven/snapshots/' }
     jcenter()
 }
 
@@ -49,5 +50,3 @@ shadowJar {
     classifier = null
     version = null
 }
-
-mainClassName = 'io.kamax.matrix.bots.send_n_leave.SendNLeaveBotApp'

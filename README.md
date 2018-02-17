@@ -1,6 +1,6 @@
 # Matrix Send'n'Leave Bot
 ## Overview
-This Matrix bot will join whatever room it is invited to, send a message, then leave.
+This Matrix bot will join whatever room it is invited to, send a message, then leave.  
 It is used to power the [mxisd](https://github.com/kamax-io/mxisd) setup test account.  
 
 It is designed with the following use cases in mind:
@@ -47,6 +47,17 @@ SNL_USER_PASSWORD='MyPassword' \
 SNL_HS_URL='https://example.org' \
 SNL_MESSAGE='Hello world' \
 java -jar matrix-send-n-leave-bot.jar 
+```
+
+## Docker
+Build with:
+```
+docker build -t matrix-send-n-leave-bot .
+```
+
+Run with:
+```
+docker run --rm -e 'SNL_CONFIG_KEY=...' matrix-send-n-leave-bot
 ```
 
 ## Support
