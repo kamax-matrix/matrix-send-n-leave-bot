@@ -38,12 +38,13 @@ buildscript {
 
 repositories {
     maven {  url 'https://kamax.io/maven/releases/' }
+    maven {  url 'https://kamax.io/maven/snapshots/' }
     jcenter()
 }
 
 dependencies {
     compile 'org.slf4j:slf4j-simple:1.7.25'
-    compile 'io.kamax:matrix-java-sdk:0.0.7'
+    compile 'io.kamax:matrix-java-sdk:0.0.8-3-gf8c759c'
 }
 
 shadowJar {

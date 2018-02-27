@@ -23,12 +23,12 @@ Requirements:
 
 The following environment variables are required:
 
-| Name                | Description                                              |
-|---------------------|----------------------------------------------------------|
-| `SNL_USER_MXISD`    | Matrix ID of the user to use for the bot.                |
-| `SNL_USER_PASSWORD` | Password of the user to use for the bot.                 |
-| `SNL_HS_URL`        | Base URL of Homeserver to connect to.                    |
-| `SNL_MESSAGE`       | The message to send in rooms that the bot is invited to. | 
+| Name                | Description                                                        |
+|---------------------|--------------------------------------------------------------------|
+| `SNL_USER_MXISD`    | Matrix ID of the user to use for the bot.                          |
+| `SNL_USER_PASSWORD` | Password of the user to use for the bot.                           |
+| `SNL_HS_URL`        | Base URL of Homeserver to connect to. Auto-discovered if possible. |
+| `SNL_MESSAGE`       | The message to send in rooms that the bot is invited to.           | 
 
 In the directory where the built jar is, run with:
 ```
@@ -38,13 +38,12 @@ In the directory where the built jar is, run with:
 Example for:
 - The user `@john:example.org`
 - The password `MyPassword`
-- HS Base URL `https://example.org`
+- HS Base URL is auto-discovered thanks to `.well-known` support
 - Message `Hello world`
 
 ```
 SNL_USER_MXID='@john:example.org' \
 SNL_USER_PASSWORD='MyPassword' \
-SNL_HS_URL='https://example.org' \
 SNL_MESSAGE='Hello world' \
 java -jar matrix-send-n-leave-bot.jar 
 ```

@@ -26,35 +26,39 @@ import io.kamax.matrix._MatrixID;
 import io.kamax.matrix.client.*;
 import io.kamax.matrix.client.regular.MatrixHttpClient;
 import io.kamax.matrix.client.regular.SyncOptions;
-import io.kamax.matrix.hs.MatrixHomeserver;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.net.URISyntaxException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Objects;
 
 public class SendNLeaveBot {
 
     private final Logger log = LoggerFactory.getLogger(SendNLeaveBot.class);
 
-    private _MatrixID mxisd;
+    private _MatrixID mxid;
     private String password;
-    private String baseUrl;
+    private URL baseUrl;
     private String message;
 
     private _MatrixClient client;
 
-    public void setMxisd(String mxisd) {
-        this.mxisd = MatrixID.asValid(mxisd);
+    public void setMxid(String mxid) {
+        this.mxid = MatrixID.asValid(mxid);
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public void setBaseUrl(String baseUrl) {
-        this.baseUrl = baseUrl;
+    public void setBaseURL(String baseUrl) {
+        try {
+            this.baseUrl = new URL(baseUrl);
+        } catch (MalformedURLException e) {
+            throw new RuntimeException("Invalid Homeserver URL: " + e.getMessage());
+        }
     }
 
     public void setMessage(String message) {
@@ -62,26 +66,24 @@ public class SendNLeaveBot {
     }
 
     public void start() {
-        if (Objects.isNull(mxisd)) {
+        if (Objects.isNull(mxid)) {
             throw new RuntimeException("Matrix ID of the user is not set");
-        }
-
-        if (StringUtils.isBlank(baseUrl)) {
-            throw new RuntimeException("Homeserver base URL is not set");
         }
 
         if (StringUtils.isBlank(message)) {
             throw new RuntimeException("Message is not set");
         }
 
-        try {
-            MatrixHomeserver hs = new MatrixHomeserver(mxisd.getDomain(), baseUrl);
-            MatrixClientContext context = new MatrixClientContext(hs);
+        if (Objects.isNull(baseUrl)) {
+            client = new MatrixHttpClient(mxid.getDomain());
+            client.discoverSettings();
+        } else {
+            MatrixClientContext context = new MatrixClientContext();
+            context.setHsBaseUrl(baseUrl);
             client = new MatrixHttpClient(context);
-            client.login(new MatrixPasswordLoginCredentials(mxisd.getLocalPart(), password));
-        } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
         }
+
+        client.login(new MatrixPasswordLoginCredentials(mxid.getLocalPart(), password));
 
         Thread t = new Thread(() -> {
             log.info("Send'n'Leave bot is running");

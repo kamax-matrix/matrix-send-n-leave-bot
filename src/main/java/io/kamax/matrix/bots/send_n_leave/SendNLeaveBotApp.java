@@ -20,15 +20,17 @@
 
 package io.kamax.matrix.bots.send_n_leave;
 
+import java.util.Optional;
+
 public class SendNLeaveBotApp {
 
     public static void main(String[] args) {
         SendNLeaveBot bot = new SendNLeaveBot();
 
-        bot.setMxisd(System.getenv("SNL_USER_MXID"));
+        bot.setMxid(System.getenv("SNL_USER_MXID"));
         bot.setPassword(System.getenv("SNL_USER_PASSWORD"));
-        bot.setBaseUrl(System.getenv("SNL_HS_URL"));
         bot.setMessage(System.getenv("SNL_MESSAGE"));
+        Optional.ofNullable(System.getenv("SNL_HS_URL")).ifPresent(bot::setBaseURL);
 
         bot.start();
     }
