@@ -119,18 +119,20 @@ public class SendNLeaveBot {
 
                     syncToken = data.nextBatchToken();
                 } catch (RuntimeException e) {
-                    e.printStackTrace();
+                    log.warn("Error during sync", e.getMessage(), e);
                 } finally {
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        log.debug("Interrupted while waiting for next sync");
                     }
                 }
             }
-        });
-        t.setName("sync");
 
+            log.info("Exiting");
+        });
+
+        t.setName("sync");
         t.start();
     }
 
