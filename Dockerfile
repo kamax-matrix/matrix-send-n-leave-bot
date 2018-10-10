@@ -1,5 +1,5 @@
 # Matrix Send'n'Leave Bot - Join rooms we are invited to, send one message than leave.
-# Copyright (C) 2018 Maxime Dor
+# Copyright (C) 2018 Kamax Sarl
 #
 # https://www.kamax.io/
 #
