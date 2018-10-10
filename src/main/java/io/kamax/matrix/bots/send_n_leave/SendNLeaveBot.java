@@ -1,6 +1,6 @@
 /*
  * Matrix Send'n'Leave Bot - Join rooms we are invited to, send one message than leave.
- * Copyright (C) 2018 Maxime Dor
+ * Copyright (C) 2018 Kamax Sarl
  *
  * https://www.kamax.io/
  *
@@ -83,7 +83,7 @@ public class SendNLeaveBot {
             client = new MatrixHttpClient(context);
         }
 
-        client.login(new MatrixPasswordLoginCredentials(mxid.getLocalPart(), password));
+        client.login(new MatrixPasswordCredentials(mxid.getLocalPart(), password));
 
         Thread t = new Thread(() -> {
             log.info("Send'n'Leave bot is running");
