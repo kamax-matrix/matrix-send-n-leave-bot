@@ -1,7 +1,9 @@
 # Matrix Send'n'Leave Bot
+[![Build Status](https://travis-ci.org/kamax-matrix/matrix-send-n-leave-bot.svg?branch=master)](https://travis-ci.org/kamax-matrix/matrix-send-n-leave-bot)
+
 ## Overview
 This Matrix bot will join whatever room it is invited to, send a message, then leave.  
-It is used to power the [mxisd](https://github.com/kamax-io/mxisd) setup test account.  
+It is used to power the [mxisd](https://github.com/kamax-matrix/mxisd) setup test account.  
 
 It is designed with the following use cases in mind:
 - Validate a setup, sending a "Congratulations!"-like message.
