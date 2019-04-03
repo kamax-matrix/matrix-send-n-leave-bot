@@ -44,7 +44,7 @@ repositories {
 
 dependencies {
     compile 'org.slf4j:slf4j-simple:1.7.25'
-    compile 'io.kamax:matrix-java-sdk:0.0.15'
+    compile 'io.kamax:matrix-java-sdk:0.0.18-15-gd330638'
 }
 
 shadowJar {
